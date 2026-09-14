@@ -502,13 +502,6 @@ class ScheduleTracker {
 
     setShowDeviceIDFlash(show) {
         this.showDeviceIDFlash = show;
-        if (this.clockDisplay) {
-            if (show) {
-                this.clockDisplay.classList.add('device-id-flash');
-            } else {
-                this.clockDisplay.classList.remove('device-id-flash');
-            }
-        }
         this.updateUI(true);
     }
 
@@ -695,7 +688,7 @@ class ScheduleTracker {
         // 2. Main Clock / Device ID Flash
         if (this.clockDisplay) {
             if (this.showDeviceIDFlash) {
-                const flashStr = `[ ID: ${this.remote.id} ]`;
+                const flashStr = this.remote.id;
                 if (force || this.lastState.clockStr !== flashStr) {
                     this.clockDisplay.textContent = flashStr;
                     this.lastState.clockStr = flashStr;

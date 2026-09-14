@@ -83,11 +83,6 @@ html, body {
     border-radius: 1rem;
 }
 
-#clock-display.device-id-flash {
-    font-family: 'DM Mono', monospace !important;
-    font-size: clamp(1.8rem, 5.5vmin, 5rem);
-    color: #f59e0b;
-}
 
 .right-header-placeholder {
     visibility: hidden;
@@ -308,9 +303,9 @@ html, body {
 
 .credits {
     color: var(--text-color);
-    opacity: 0.55;
     font-size: clamp(0.8rem, 1.8vmin, 1.4rem);
     font-weight: 400 !important;
+    font-family: 'Google Sans Flex', -apple-system, BlinkMacSystemFont, sans-serif;
     white-space: nowrap;
     display: flex;
     align-items: center;
@@ -318,30 +313,31 @@ html, body {
 }
 
 .credits span, .credits a, .credits button {
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
     font-weight: 400 !important;
+    opacity: 0.55;
 }
 
-/* Device ID in bottom right - DM Mono font, normal weight (not bold) */
-.device-id-credit {
-    font-family: 'DM Mono', monospace;
-    font-weight: 400 !important;
-    opacity: 0.85;
-}
-
-.customize-link {
+.credits a.report-issue-link, .credits button.customize-link {
     background: none;
     border: none;
-    color: inherit;
     text-decoration: underline;
-    opacity: 0.85;
-    font-size: inherit;
-    font-family: inherit;
     cursor: pointer;
     padding: 0;
 }
 
-.customize-link:hover {
-    opacity: 1;
+.credits a.report-issue-link:hover, .credits button.customize-link:hover {
+    opacity: 0.85;
+}
+
+/* Device ID - same font, size, weight, but 50% more visible (opacity 0.85 vs 0.55) */
+.device-id-credit {
+    font-family: inherit !important;
+    font-size: inherit !important;
+    font-weight: 400 !important;
+    opacity: 0.85 !important;
 }
 
 /* Local Customize Modal */

@@ -110,24 +110,32 @@ function initDashboard() {
     // Hold to Show Device IDs logic
     const holdIdentifyBtn = document.getElementById('hold-identify-btn');
     if (holdIdentifyBtn) {
+        let isHolding = false;
         const setHoldState = (active) => {
+            if (isHolding === active) return;
+            isHolding = active;
             if (active) {
                 holdIdentifyBtn.classList.add('active');
-                db.ref('global/showDeviceIDs').set(true);
+                db.ref('global/showDeviceIDs').set(true)
+                    .catch(err => showToast("Failed to activate ID Flash: " + err.message, 'error'));
             } else {
                 holdIdentifyBtn.classList.remove('active');
-                db.ref('global/showDeviceIDs').set(false);
+                db.ref('global/showDeviceIDs').set(false)
+                    .catch(err => showToast("Failed to deactivate ID Flash: " + err.message, 'error'));
             }
         };
 
-        holdIdentifyBtn.addEventListener('mousedown', () => setHoldState(true));
-        holdIdentifyBtn.addEventListener('mouseup', () => setHoldState(false));
-        holdIdentifyBtn.addEventListener('mouseleave', () => setHoldState(false));
-        holdIdentifyBtn.addEventListener('touchstart', (e) => {
+        holdIdentifyBtn.addEventListener('pointerdown', (e) => {
             e.preventDefault();
+            holdIdentifyBtn.setPointerCapture(e.pointerId);
             setHoldState(true);
         });
-        holdIdentifyBtn.addEventListener('touchend', () => setHoldState(false));
+        holdIdentifyBtn.addEventListener('pointerup', (e) => {
+            e.preventDefault();
+            setHoldState(false);
+        });
+        holdIdentifyBtn.addEventListener('pointercancel', () => setHoldState(false));
+        holdIdentifyBtn.addEventListener('contextmenu', (e) => e.preventDefault());
     }
 
     // Filter Buttons
