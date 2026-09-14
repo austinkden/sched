@@ -310,28 +310,21 @@ html, body {
     color: var(--text-color);
     opacity: 0.55;
     font-size: clamp(0.8rem, 1.8vmin, 1.4rem);
-    font-weight: 500;
+    font-weight: 400 !important;
     white-space: nowrap;
     display: flex;
     align-items: center;
     gap: 0.35em;
 }
 
-.report-issue-link {
-    color: inherit;
-    text-decoration: underline;
-    opacity: 0.85;
-    transition: opacity 0.2s;
-}
-
-.report-issue-link:hover {
-    opacity: 1;
+.credits span, .credits a, .credits button {
+    font-weight: 400 !important;
 }
 
 /* Device ID in bottom right - DM Mono font, normal weight (not bold) */
 .device-id-credit {
     font-family: 'DM Mono', monospace;
-    font-weight: 400;
+    font-weight: 400 !important;
     opacity: 0.85;
 }
 
