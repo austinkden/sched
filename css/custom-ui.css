@@ -1,0 +1,267 @@
+/* Custom UI Components: Custom Dropdown Menu and Custom Color Picker */
+
+/* --- Custom Select Dropdown Component --- */
+.ui-select-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    user-select: none;
+    font-family: inherit;
+}
+
+.ui-select-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.6rem 0.9rem;
+    background: #1e293b;
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.ui-select-trigger:hover, .ui-select-wrapper.open .ui-select-trigger {
+    border-color: #b1953a;
+    background: #283548;
+}
+
+.ui-select-arrow {
+    font-size: 0.75rem;
+    transition: transform 0.25s ease;
+    opacity: 0.75;
+}
+
+.ui-select-wrapper.open .ui-select-arrow {
+    transform: rotate(180deg);
+}
+
+/* Custom Dropdown Option List Overlay */
+.ui-select-options {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    right: 0;
+    background: #151e2e;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 6px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.05);
+    z-index: 100000;
+    display: none;
+    flex-direction: column;
+    gap: 2px;
+    max-height: 240px;
+    overflow-y: auto;
+    backdrop-filter: blur(12px);
+    animation: customMenuFade 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ui-select-wrapper.open .ui-select-options {
+    display: flex;
+}
+
+@keyframes customMenuFade {
+    from { opacity: 0; transform: translateY(-6px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.ui-select-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.55rem 0.85rem;
+    color: #cbd5e1;
+    font-size: 0.85rem;
+    font-weight: 500;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.ui-select-option:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+}
+
+.ui-select-option.selected {
+    background: rgba(177, 149, 58, 0.25);
+    color: #ffffff;
+    font-weight: 700;
+    border: 1px solid rgba(177, 149, 58, 0.4);
+}
+
+.ui-select-option.selected::after {
+    content: '✓';
+    color: #b1953a;
+    font-weight: 900;
+    font-size: 0.9rem;
+}
+
+/* Custom Scrollbar for Dropdown Menu */
+.ui-select-options::-webkit-scrollbar {
+    width: 6px;
+}
+.ui-select-options::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+}
+
+/* --- Custom Color Picker Component --- */
+.ui-color-wrapper {
+    position: relative;
+    display: inline-block;
+    user-select: none;
+    font-family: inherit;
+}
+
+.ui-color-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.4rem 0.75rem 0.4rem 0.5rem;
+    background: #1e293b;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.ui-color-trigger:hover, .ui-color-wrapper.open .ui-color-trigger {
+    border-color: #b1953a;
+    background: #283548;
+}
+
+.ui-color-swatch-preview {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.25), 0 2px 4px rgba(0, 0, 0, 0.3);
+    flex-shrink: 0;
+}
+
+.ui-color-hex-text {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #ffffff;
+    letter-spacing: 0.03em;
+}
+
+/* Color Picker Popover Flyout */
+.ui-color-popover {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    width: 260px;
+    background: #111827;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 14px;
+    padding: 1rem;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.85);
+    z-index: 100000;
+    display: none;
+    flex-direction: column;
+    gap: 0.85rem;
+    animation: customMenuFade 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ui-color-wrapper.open .ui-color-popover {
+    display: flex;
+}
+
+/* Preset Swatches Header & Grid */
+.ui-color-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #94a3b8;
+}
+
+.ui-color-presets {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 6px;
+}
+
+.ui-preset-swatch {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 6px;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    transition: transform 0.15s ease, border-color 0.15s ease;
+}
+
+.ui-preset-swatch:hover {
+    transform: scale(1.15);
+    border-color: #ffffff;
+    z-index: 2;
+}
+
+/* Hue Range Slider */
+.ui-color-hue-slider {
+    width: 100%;
+    height: 12px;
+    border-radius: 6px;
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+    background: linear-gradient(to right,
+        #ff0000 0%, #ffff00 17%, #00ff00 33%,
+        #00ffff 50%, #0000ff 67%, #ff00ff 83%, #ff0000 100%);
+    cursor: pointer;
+}
+
+.ui-color-hue-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 2px solid #000000;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+
+/* Custom Hex Input and Preview */
+.ui-color-input-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.ui-color-hex-input {
+    flex: 1;
+    background: #1e293b;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    padding: 0.45rem 0.6rem;
+    color: #ffffff;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+}
+
+.ui-color-hex-input:focus {
+    outline: none;
+    border-color: #b1953a;
+}
+
+.ui-color-close-btn {
+    background: #b1953a;
+    color: #000000;
+    font-weight: 700;
+    font-size: 0.8rem;
+    padding: 0.45rem 0.85rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}

@@ -362,6 +362,9 @@ class ScheduleTracker {
 
         this.openCustomizeBtn.addEventListener('click', () => {
             this.customizeModal.style.display = 'flex';
+            if (window.enhanceAllCustomUi) {
+                window.enhanceAllCustomUi(this.customizeModal);
+            }
         });
 
         if (this.closeCustomizeBtn) {
@@ -405,9 +408,19 @@ class ScheduleTracker {
             document.body.style.background = settings.bg;
             document.documentElement.style.setProperty('--bg-color', settings.bg);
             document.documentElement.style.setProperty('--text-color', this.remote.getContrastColor(settings.bg));
+            const bgInput = document.getElementById('cust-bg-color');
+            if (bgInput) {
+                bgInput.value = settings.bg;
+                if (bgInput._updateCustomColor) bgInput._updateCustomColor();
+            }
         }
         if (settings.bar) {
             document.documentElement.style.setProperty('--bar-color', settings.bar);
+            const barInput = document.getElementById('cust-bar-color');
+            if (barInput) {
+                barInput.value = settings.bar;
+                if (barInput._updateCustomColor) barInput._updateCustomColor();
+            }
         }
         if (settings.style) {
             this.setBarStyle(settings.style);

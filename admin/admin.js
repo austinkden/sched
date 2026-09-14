@@ -75,6 +75,9 @@ function initDashboard() {
     if (window.lucide) {
         window.lucide.createIcons();
     }
+    if (window.enhanceAllCustomUi) {
+        window.enhanceAllCustomUi(adminDashboard);
+    }
 
     const db = firebase.database();
 
@@ -420,6 +423,9 @@ function openControlModal(id) {
     currentDeviceId = id;
     updateModalData(id, true);
     controlModal.style.display = 'flex';
+    if (window.enhanceAllCustomUi) {
+        window.enhanceAllCustomUi(controlModal);
+    }
 }
 
 function updateModalData(id, updateInputs = false) {
@@ -443,15 +449,25 @@ function updateModalData(id, updateInputs = false) {
         document.getElementById('modal-bg-gradient-group').style.display = mode === 'gradient' ? 'block' : 'none';
         document.getElementById('modal-bg-image-group').style.display = mode === 'image' ? 'block' : 'none';
 
-        document.getElementById('input-bg-color').value = settings.bgColor || "#00401e";
-        document.getElementById('input-bg-grad1').value = settings.bgGradient1 || "#00401e";
-        document.getElementById('input-bg-grad2').value = settings.bgGradient2 || "#001a0c";
+        const elBgColor = document.getElementById('input-bg-color');
+        const elGrad1 = document.getElementById('input-bg-grad1');
+        const elGrad2 = document.getElementById('input-bg-grad2');
+        const elBarColor = document.getElementById('input-bar-color');
+        const elBarStyle = document.getElementById('input-bar-style');
+        const elClockFmt = document.getElementById('input-clock-format');
+
+        elBgColor.value = settings.bgColor || "#00401e";
+        elGrad1.value = settings.bgGradient1 || "#00401e";
+        elGrad2.value = settings.bgGradient2 || "#001a0c";
         document.getElementById('input-bg-grad-deg').value = settings.bgGradientAngle || "135";
         document.getElementById('input-bg-image').value = settings.bgImage || "";
 
-        document.getElementById('input-bar-color').value = settings.barColor || "#b1953a";
-        document.getElementById('input-bar-style').value = settings.barStyle || "liquid";
-        document.getElementById('input-clock-format').value = settings.clock24h ? "24" : "12";
+        elBarColor.value = settings.barColor || "#b1953a";
+        elBarStyle.value = settings.barStyle || "liquid";
+        elClockFmt.value = settings.clock24h ? "24" : "12";
+
+        [modalBgMode, elBarStyle, elClockFmt].forEach(el => { if (el && el._updateCustomSelect) el._updateCustomSelect(); });
+        [elBgColor, elGrad1, elGrad2, elBarColor].forEach(el => { if (el && el._updateCustomColor) el._updateCustomColor(); });
 
         document.getElementById('input-offset').value = settings.timeOffset || 0;
         document.getElementById('input-show-weather').checked = settings.showWeather !== false;
