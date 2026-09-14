@@ -104,22 +104,26 @@
                         <div class="setting-row">
                             <div class="picker-group">
                                 <span>Bar Animation</span>
-                                <select id="global-bar-style">
-                                    <option value="liquid">Liquid Wave</option>
-                                    <option value="glow">Smooth Shimmer</option>
-                                    <option value="pulse">Clean Pulse</option>
-                                    <option value="solid">Solid Static</option>
-                                </select>
+                                <div class="custom-select-wrapper">
+                                    <select id="global-bar-style" class="custom-select">
+                                        <option value="liquid">Liquid</option>
+                                        <option value="glow">Glow</option>
+                                        <option value="pulse">Pulse</option>
+                                        <option value="solid">Solid</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
 
                         <div class="setting-row">
                             <div class="picker-group">
                                 <span>Clock Format</span>
-                                <select id="global-clock-format">
-                                    <option value="12">12-Hour</option>
-                                    <option value="24">24-Hour</option>
-                                </select>
+                                <div class="custom-select-wrapper">
+                                    <select id="global-clock-format" class="custom-select">
+                                        <option value="12">12-Hour</option>
+                                        <option value="24">24-Hour</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
 
@@ -228,20 +232,24 @@
 
                 <div class="setting-item">
                     <label>Bar Animation Style:</label>
-                    <select id="input-bar-style">
-                        <option value="liquid">Liquid Wave</option>
-                        <option value="glow">Smooth Shimmer</option>
-                        <option value="pulse">Clean Pulse</option>
-                        <option value="solid">Solid Static</option>
-                    </select>
+                    <div class="custom-select-wrapper">
+                        <select id="input-bar-style" class="custom-select">
+                            <option value="liquid">Liquid</option>
+                            <option value="glow">Glow</option>
+                            <option value="pulse">Pulse</option>
+                            <option value="solid">Solid</option>
+                        </select>
+                    </div>
                 </div>
 
                 <div class="setting-item">
                     <label>Clock Format:</label>
-                    <select id="input-clock-format">
-                        <option value="12">12-Hour (09:15:30)</option>
-                        <option value="24">24-Hour (21:15:30)</option>
-                    </select>
+                    <div class="custom-select-wrapper">
+                        <select id="input-clock-format" class="custom-select">
+                            <option value="12">12-Hour (09:15:30)</option>
+                            <option value="24">24-Hour (21:15:30)</option>
+                        </select>
+                    </div>
                 </div>
 
                 <div class="setting-item">
@@ -250,22 +258,26 @@
                 </div>
 
                 <div class="checkbox-group">
-                    <div class="checkbox-item">
+                    <label class="custom-checkbox">
                         <input type="checkbox" id="input-show-weather" checked>
-                        <label for="input-show-weather">Show Weather Widget</label>
-                    </div>
-                    <div class="checkbox-item">
+                        <span class="checkbox-box"></span>
+                        <span>Show Weather Widget</span>
+                    </label>
+                    <label class="custom-checkbox">
                         <input type="checkbox" id="input-show-total-time" checked>
-                        <label for="input-show-total-time">Show Total Time Remaining</label>
-                    </div>
-                    <div class="checkbox-item">
+                        <span class="checkbox-box"></span>
+                        <span>Show Total Time Remaining</span>
+                    </label>
+                    <label class="custom-checkbox">
                         <input type="checkbox" id="input-show-credits" checked>
-                        <label for="input-show-credits">Show Footer Credits</label>
-                    </div>
-                    <div class="checkbox-item">
+                        <span class="checkbox-box"></span>
+                        <span>Show Footer Credits</span>
+                    </label>
+                    <label class="custom-checkbox">
                         <input type="checkbox" id="input-low-perf">
-                        <label for="input-low-perf">Low Performance Mode</label>
-                    </div>
+                        <span class="checkbox-box"></span>
+                        <span>Low Performance Mode</span>
+                    </label>
                 </div>
             </div>
 
@@ -275,10 +287,11 @@
                 <h3><i data-lucide="alert-triangle"></i> Override Message</h3>
                 <label>Overlay Text:</label>
                 <textarea id="input-override-text" placeholder="Enter message for full-screen override"></textarea>
-                <div class="checkbox-item">
+                <label class="custom-checkbox margin-top-sm">
                     <input type="checkbox" id="input-override-active">
-                    <label for="input-override-active">Activate Full Screen Override</label>
-                </div>
+                    <span class="checkbox-box"></span>
+                    <span>Activate Full Screen Override</span>
+                </label>
             </div>
 
             <div class="control-section">

@@ -328,11 +328,11 @@ html, body {
     opacity: 1;
 }
 
-/* Device ID in bottom right - DM Mono font, 50% more visible than normal credits opacity */
+/* Device ID in bottom right - DM Mono font, normal weight (not bold) */
 .device-id-credit {
     font-family: 'DM Mono', monospace;
-    font-weight: 500;
-    opacity: 0.825;
+    font-weight: 400;
+    opacity: 0.85;
 }
 
 .customize-link {
@@ -413,36 +413,114 @@ html, body {
     font-weight: 600;
 }
 
+/* Custom Pickers & Select Controls */
 .cust-row input[type="color"] {
-    width: 40px;
-    height: 32px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 6px;
+    -webkit-appearance: none;
+    appearance: none;
+    width: 44px;
+    height: 36px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
     background: none;
     cursor: pointer;
+    overflow: hidden;
+    padding: 0;
 }
 
-.cust-row select {
-    padding: 0.4rem 0.6rem;
+.cust-row input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+
+.cust-row input[type="color"]::-webkit-color-swatch {
+    border: none;
     border-radius: 6px;
+}
+
+.custom-select-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.custom-select-wrapper::after {
+    content: '▾';
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #94a3b8;
+    pointer-events: none;
+    font-size: 0.8rem;
+}
+
+.custom-select {
+    appearance: none;
+    -webkit-appearance: none;
+    padding: 0.5rem 2.2rem 0.5rem 0.85rem;
+    border-radius: 8px;
     background: #1e293b;
     color: #ffffff;
     border: 1px solid rgba(255, 255, 255, 0.2);
     font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: border-color 0.2s;
+}
+
+.custom-select:focus {
+    outline: none;
+    border-color: var(--bar-color);
 }
 
 .cust-checkboxes {
     display: flex;
-    gap: 1rem;
+    gap: 1.25rem;
     margin-top: 0.5rem;
     font-size: 0.85rem;
 }
 
-.cust-checkboxes label {
+/* Custom Checkbox Component */
+.custom-checkbox {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    user-select: none;
+    font-weight: 600;
+}
+
+.custom-checkbox input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.checkbox-box {
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 6px;
+    background: #1e293b;
     display: flex;
     align-items: center;
-    gap: 0.35rem;
-    cursor: pointer;
+    justify-content: center;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.custom-checkbox input[type="checkbox"]:checked ~ .checkbox-box {
+    background: var(--bar-color);
+    border-color: var(--bar-color);
+}
+
+.custom-checkbox input[type="checkbox"]:checked ~ .checkbox-box::after {
+    content: '';
+    width: 5px;
+    height: 10px;
+    border: solid #000000;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    margin-bottom: 2px;
 }
 
 .customize-footer {
