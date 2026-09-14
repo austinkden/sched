@@ -254,7 +254,7 @@ html, body {
     background: rgba(0, 0, 0, 0.55);
     backdrop-filter: blur(8px);
     padding: 0 clamp(0.8rem, 1.8vw, 2rem);
-    border-radius: clamp(1.8rem, 4vh, 3.5rem);
+    border-radius: 9999px;
     border: 1.5px solid rgba(255, 255, 255, 0.2);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
     z-index: 20;
@@ -653,6 +653,7 @@ html, body {
         font-size: 1.15rem;
         padding: 0.4rem 0.7rem;
         right: 0.4rem;
+        border-radius: 9999px;
     }
 
     .footer {
