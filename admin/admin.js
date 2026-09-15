@@ -212,6 +212,8 @@ function initDashboard() {
         const gradDeg = document.getElementById('input-global-grad-deg').value || "135";
         const bgImage = document.getElementById('input-global-bg-image').value.trim();
         const bar = document.getElementById('input-global-bar').value;
+        const textColor = document.getElementById('input-global-text-color').value;
+        const animAccent = document.getElementById('input-global-anim-accent').value;
         const barStyle = document.getElementById('global-bar-style').value;
         const clock24h = document.getElementById('global-clock-format').value === '24';
 
@@ -225,6 +227,8 @@ function initDashboard() {
                 updates[`devices/${id}/settings/bgGradientAngle`] = gradDeg;
                 updates[`devices/${id}/settings/bgImage`] = bgImage;
                 updates[`devices/${id}/settings/barColor`] = bar;
+                updates[`devices/${id}/settings/textColor`] = textColor;
+                updates[`devices/${id}/settings/animAccentColor`] = animAccent;
                 updates[`devices/${id}/settings/barStyle`] = barStyle;
                 updates[`devices/${id}/settings/clock24h`] = clock24h;
             });
@@ -461,6 +465,8 @@ function updateModalData(id, updateInputs = false) {
         const elGrad1 = document.getElementById('input-bg-grad1');
         const elGrad2 = document.getElementById('input-bg-grad2');
         const elBarColor = document.getElementById('input-bar-color');
+        const elTextColor = document.getElementById('input-text-color');
+        const elAnimAccent = document.getElementById('input-anim-accent');
         const elBarStyle = document.getElementById('input-bar-style');
         const elClockFmt = document.getElementById('input-clock-format');
 
@@ -471,11 +477,13 @@ function updateModalData(id, updateInputs = false) {
         document.getElementById('input-bg-image').value = settings.bgImage || "";
 
         elBarColor.value = settings.barColor || "#b1953a";
+        if (elTextColor) elTextColor.value = settings.textColor || "#ffffff";
+        if (elAnimAccent) elAnimAccent.value = settings.animAccentColor || "#ffffff";
         elBarStyle.value = settings.barStyle || "liquid";
         elClockFmt.value = settings.clock24h ? "24" : "12";
 
         [modalBgMode, elBarStyle, elClockFmt].forEach(el => { if (el && el._updateCustomSelect) el._updateCustomSelect(); });
-        [elBgColor, elGrad1, elGrad2, elBarColor].forEach(el => { if (el && el._updateCustomColor) el._updateCustomColor(); });
+        [elBgColor, elGrad1, elGrad2, elBarColor, elTextColor, elAnimAccent].forEach(el => { if (el && el._updateCustomColor) el._updateCustomColor(); });
 
         document.getElementById('input-offset').value = settings.timeOffset || 0;
         document.getElementById('input-show-weather').checked = settings.showWeather !== false;
@@ -546,6 +554,8 @@ if (saveAllDeviceBtn) {
         const bgImage = document.getElementById('input-bg-image').value.trim();
 
         const bar = document.getElementById('input-bar-color').value;
+        const textColor = document.getElementById('input-text-color') ? document.getElementById('input-text-color').value : "#ffffff";
+        const animAccent = document.getElementById('input-anim-accent') ? document.getElementById('input-anim-accent').value : "#ffffff";
         const barStyle = document.getElementById('input-bar-style').value;
         const clock24h = document.getElementById('input-clock-format').value === '24';
         const offset = document.getElementById('input-offset').value;
@@ -567,6 +577,8 @@ if (saveAllDeviceBtn) {
             bgGradientAngle: gradDeg,
             bgImage: bgImage,
             barColor: bar,
+            textColor: textColor,
+            animAccentColor: animAccent,
             barStyle: barStyle,
             clock24h: clock24h,
             timeOffset: offset,

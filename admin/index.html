@@ -49,7 +49,6 @@
 
                     <div class="global-setting-item">
                         <div class="setting-row">
-                            <label><i data-lucide="palette"></i> Background Mode:</label>
                             <select id="global-bg-mode">
                                 <option value="color">Solid Color</option>
                                 <option value="gradient">Gradient</option>
@@ -100,6 +99,20 @@
                                     <button class="btn-reset" data-target="input-global-bar" data-default="#b1953a">Reset</button>
                                 </div>
                             </div>
+                            <div class="picker-group">
+                                <span>Text Color</span>
+                                <div class="input-with-reset">
+                                    <input type="color" id="input-global-text-color" value="#ffffff">
+                                    <button class="btn-reset" data-target="input-global-text-color" data-default="#ffffff">Reset</button>
+                                </div>
+                            </div>
+                            <div class="picker-group">
+                                <span>Animation Accent</span>
+                                <div class="input-with-reset">
+                                    <input type="color" id="input-global-anim-accent" value="#ffffff">
+                                    <button class="btn-reset" data-target="input-global-anim-accent" data-default="#ffffff">Reset</button>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="setting-row">
@@ -146,7 +159,6 @@
 
                     <div class="search-bar-container">
                         <div class="search-input-wrapper">
-                            <i data-lucide="search" class="search-icon"></i>
                             <input type="text" id="search-input" placeholder="Search devices by name, ID, browser...">
                         </div>
                         <button id="clear-search-btn" class="btn-secondary" style="display: none;"><i data-lucide="x"></i> Clear</button>
@@ -180,7 +192,6 @@
             <div class="control-section">
                 <h3><i data-lucide="palette"></i> Settings & Theme</h3>
                 <div class="setting-item">
-                    <label>Background Mode:</label>
                     <select id="modal-bg-mode">
                         <option value="color">Solid Color</option>
                         <option value="gradient">Gradient</option>
@@ -228,6 +239,22 @@
                     <div class="input-with-reset">
                         <input type="color" id="input-bar-color" value="#b1953a">
                         <button class="btn-reset" data-target="input-bar-color" data-default="#b1953a">Reset</button>
+                    </div>
+                </div>
+
+                <div class="setting-item">
+                    <label>Text Color:</label>
+                    <div class="input-with-reset">
+                        <input type="color" id="input-text-color" value="#ffffff">
+                        <button class="btn-reset" data-target="input-text-color" data-default="#ffffff">Reset</button>
+                    </div>
+                </div>
+
+                <div class="setting-item">
+                    <label>Bar Accent Color:</label>
+                    <div class="input-with-reset">
+                        <input type="color" id="input-anim-accent" value="#ffffff">
+                        <button class="btn-reset" data-target="input-anim-accent" data-default="#ffffff">Reset</button>
                     </div>
                 </div>
 

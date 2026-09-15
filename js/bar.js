@@ -4,7 +4,7 @@ const CONFIG = {
     LAT: 39.5481,
     LON: -104.9739,
     SCHOOL_END_TIME: "14:50",
-    APP_VERSION: "4.0.0",
+    APP_VERSION: "4.0",
     AUTHOR_NAME: "Austin Strong",
     FIREBASE: {
         apiKey: "AIzaSyDbnzWXHsqr6rOXEq99FMYyJEgVp5QSUAo",
@@ -168,23 +168,44 @@ class RemoteManager {
                 const g2 = settings.bgGradient2 || '#001a0c';
                 const deg = settings.bgGradientAngle || '135';
                 document.body.style.background = `linear-gradient(${deg}deg, ${g1}, ${g2})`;
-                document.documentElement.style.setProperty('--text-color', this.getContrastColor(g1));
             } else if (bgMode === 'image' && settings.bgImage) {
                 document.body.style.backgroundImage = `url('${settings.bgImage}')`;
                 document.body.style.backgroundSize = 'cover';
                 document.body.style.backgroundPosition = 'center';
                 document.body.style.backgroundRepeat = 'no-repeat';
                 document.body.style.backgroundColor = settings.bgColor || '#00401e';
-                document.documentElement.style.setProperty('--text-color', '#ffffff');
             } else {
                 const bgColor = settings.bgColor || '#00401e';
                 document.body.style.background = bgColor;
                 document.documentElement.style.setProperty('--bg-color', bgColor);
-                document.documentElement.style.setProperty('--text-color', this.getContrastColor(bgColor));
             }
 
-            // Progress Bar Color
+            // Text Color & Smart Background Pill Adaptation
+            const textColor = settings.textColor || '#ffffff';
+            document.documentElement.style.setProperty('--text-color', textColor);
+
+            // Compute luminance of text color to adapt background pill contrast
+            if (textColor.length === 7 && textColor.startsWith('#')) {
+                const r = parseInt(textColor.slice(1, 3), 16);
+                const g = parseInt(textColor.slice(3, 5), 16);
+                const b = parseInt(textColor.slice(5, 7), 16);
+                const lum = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+                if (lum < 0.3) {
+                    // Dark text -> Light pill overlay
+                    document.documentElement.style.setProperty('--pill-bg', 'rgba(255, 255, 255, 0.75)');
+                    document.documentElement.style.setProperty('--pill-border', 'rgba(0, 0, 0, 0.2)');
+                    document.documentElement.style.setProperty('--text-shadow', '0 1px 3px rgba(255, 255, 255, 0.4)');
+                } else {
+                    // Light text -> Dark pill overlay
+                    document.documentElement.style.setProperty('--pill-bg', 'rgba(0, 0, 0, 0.55)');
+                    document.documentElement.style.setProperty('--pill-border', 'rgba(255, 255, 255, 0.2)');
+                    document.documentElement.style.setProperty('--text-shadow', '0 2px 8px rgba(0, 0, 0, 0.6)');
+                }
+            }
+
+            // Progress Bar Color & Accent Animation Color
             document.documentElement.style.setProperty('--bar-color', settings.barColor || '#b1953a');
+            document.documentElement.style.setProperty('--anim-accent-color', settings.animAccentColor || '#ffffff');
 
             // Apply Time Offset
             if (settings.timeOffset !== undefined) {
@@ -377,12 +398,10 @@ class ScheduleTracker {
             this.saveCustomizeBtn.addEventListener('click', () => {
                 const bg = document.getElementById('cust-bg-color').value;
                 const bar = document.getElementById('cust-bar-color').value;
-                const style = document.getElementById('cust-bar-style').value;
                 const format = document.getElementById('cust-clock-format').value;
                 const weather = document.getElementById('cust-show-weather').checked;
-                const totalTime = document.getElementById('cust-show-total-time').checked;
 
-                const localSettings = { bg, bar, style, format, weather, totalTime };
+                const localSettings = { bg, bar, format, weather };
                 localStorage.setItem('mvhs_local_customizations', JSON.stringify(localSettings));
 
                 this.applyLocalSettings(localSettings);

@@ -1,8 +1,12 @@
 :root {
     --bg-color: #00401e; /* High contrast dark green */
     --text-color: #ffffff;
+    --anim-accent-color: #ffffff;
+    --pill-bg: rgba(0, 0, 0, 0.55);
+    --pill-border: rgba(255, 255, 255, 0.2);
     --bar-bg: rgba(0, 0, 0, 0.4); /* Strong contrast track */
     --bar-color: #b1953a; /* Default Gold */
+    --text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
 }
 
 * {
@@ -42,15 +46,15 @@ html, body {
 
 .top-bar-item {
     font-weight: 700;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+    text-shadow: var(--text-shadow);
+    color: var(--text-color);
 }
 
 .header-pill {
-    background: rgba(0, 0, 0, 0.25);
+    background: var(--pill-bg);
     border-radius: 0.85rem;
-    backdrop-filter: blur(6px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--pill-border);
 }
 
 .left-header-group {
@@ -93,9 +97,9 @@ html, body {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
+    padding-top: clamp(2rem, 6vh, 5rem);
     gap: clamp(2rem, 5vh, 5rem);
-    padding: 2vh 0;
 }
 
 .schedule-wrapper {
@@ -119,7 +123,8 @@ html, body {
     font-size: clamp(2rem, 5.8vmin, 5rem);
     font-weight: 800;
     letter-spacing: 0.01em;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+    text-shadow: var(--text-shadow);
+    color: var(--text-color);
 }
 
 .progress_container {
@@ -159,8 +164,8 @@ html, body {
 
 .progress_bar.bar-style-liquid::before {
     background:
-        radial-gradient(circle at 20% 35%, rgba(255, 255, 255, 0.5) 0%, transparent 40%),
-        radial-gradient(circle at 70% 65%, rgba(255, 255, 255, 0.4) 0%, transparent 45%);
+        radial-gradient(circle at 20% 35%, var(--anim-accent-color) 0%, transparent 40%),
+        radial-gradient(circle at 70% 65%, var(--anim-accent-color) 0%, transparent 45%);
     background-size: 100vh 100%;
     background-repeat: repeat-x;
     animation: liquidFlow1 20s linear infinite;
@@ -169,8 +174,8 @@ html, body {
 
 .progress_bar.bar-style-liquid::after {
     background:
-        radial-gradient(circle at 40% 70%, rgba(255, 255, 255, 0.3) 0%, transparent 40%),
-        radial-gradient(circle at 80% 30%, rgba(255, 255, 255, 0.4) 0%, transparent 50%);
+        radial-gradient(circle at 40% 70%, var(--anim-accent-color) 0%, transparent 40%),
+        radial-gradient(circle at 80% 30%, var(--anim-accent-color) 0%, transparent 50%);
     background-size: 85vh 100%;
     background-repeat: repeat-x;
     animation: liquidFlow2 15s linear infinite reverse;
@@ -185,7 +190,7 @@ html, body {
     left: -100%;
     width: 60%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    background: linear-gradient(90deg, transparent, var(--anim-accent-color), transparent);
     animation: barShimmer 3s infinite;
 }
 
@@ -250,13 +255,13 @@ html, body {
     font-weight: 800;
     font-variant-numeric: tabular-nums;
     letter-spacing: 0.05em;
-    color: #ffffff;
-    background: rgba(0, 0, 0, 0.55);
+    color: var(--text-color);
+    text-shadow: var(--text-shadow);
+    background: var(--pill-bg);
     backdrop-filter: blur(8px);
     padding: 0 clamp(0.8rem, 1.8vw, 2rem);
     border-radius: 9999px;
-    border: 1.5px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    border: 1.5px solid var(--pill-border);
     z-index: 20;
     line-height: 1;
     white-space: nowrap;
@@ -267,11 +272,13 @@ html, body {
     text-align: center;
     font-size: clamp(3rem, 12vmin, 10rem);
     font-weight: 800;
-    background: rgba(0, 0, 0, 0.4);
+    color: var(--text-color);
+    text-shadow: var(--text-shadow);
+    background: var(--pill-bg);
+    backdrop-filter: blur(8px);
     padding: 6vh 4vw;
     border-radius: 4rem;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-    border: 2px solid rgba(255, 255, 255, 0.1);
+    border: 2px solid var(--pill-border);
     margin: auto 0;
 }
 
@@ -294,16 +301,18 @@ html, body {
     font-size: clamp(1.05rem, 3.2vmin, 2.5rem);
     font-weight: 700;
     font-variant-numeric: tabular-nums;
-    background: rgba(0, 0, 0, 0.45);
-    color: #ffffff;
+    background: var(--pill-bg);
+    backdrop-filter: blur(8px);
+    color: var(--text-color);
+    text-shadow: var(--text-shadow);
     padding: clamp(0.5rem, 1vh, 1rem) clamp(1rem, 1.8vw, 1.8rem);
     border-radius: clamp(0.8rem, 1.8vh, 1.6rem);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--pill-border);
 }
 
 .credits {
     color: var(--text-color);
+    text-shadow: var(--text-shadow);
     font-size: clamp(0.8rem, 1.8vmin, 1.4rem);
     font-weight: 400 !important;
     font-family: 'Google Sans Flex', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -311,6 +320,7 @@ html, body {
     display: flex;
     align-items: center;
     gap: 0.35em;
+    margin-left: auto;
 }
 
 .credits span, .credits a, .credits button {
@@ -357,14 +367,14 @@ html, body {
 }
 
 .customize-card {
-    background: #0f172a;
-    color: #ffffff;
-    border: 2px solid var(--bar-color);
+    background: var(--pill-bg);
+    backdrop-filter: blur(8px);
+    color: var(--text-color);
+    border: 1.5px solid var(--pill-border);
     border-radius: 1.25rem;
     padding: 1.5rem;
     width: 90%;
     max-width: 400px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
 }
 
 .customize-header {
@@ -432,14 +442,7 @@ html, body {
 }
 
 .custom-select-wrapper::after {
-    content: '▾';
-    position: absolute;
-    right: 0.75rem;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #94a3b8;
-    pointer-events: none;
-    font-size: 0.8rem;
+    display: none !important;
 }
 
 .custom-select {
@@ -664,6 +667,7 @@ html, body {
 
     .credits {
         align-self: flex-end;
+        margin-left: auto;
     }
 
     .identify-modal {
